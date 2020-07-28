@@ -1,0 +1,292 @@
+---
+title: "Using pandoc lua filters to input and romanize Arabic in Rmarkdown documents"
+output:
+  bookdown::gitbook:
+    split_by: "none"
+    self_contained: yes
+    pandoc_args: ["--lua-filter=trn.lua"]
+    keep_md: no
+    css: mystyle.css
+    config:
+      toc:
+        collapse: section
+        scroll_highlight: yes
+        before: null
+        after: null
+      toolbar:
+        position: fixed
+      edit : null
+      download: null
+      search: yes
+      fontsettings:
+        theme: white
+        family: serif
+        size: 2
+      sharing:
+        facebook: yes
+        github: no
+        twitter: yes
+        linkedin: yes
+        weibo: no
+        instapaper: no
+        vk: no
+        all: ['facebook', 'twitter', 'linkedin', 'weibo', 'instapaper']
+      info: yes
+  pdf_document:
+    pandoc_args: ["--lua-filter=trn.lua"]
+    latex_engine: xelatex
+    keep_tex: true
+    template: bidi_art_templ.tex
+---
+
+:::{lang=ar dir=rtl}
+بسم الله الرحمن الرحيم  
+الحمد لله والصلاة والسلام على نبينا محمد  
+أشهد أن لا إله إلا الله وأشهد أن محمدا عبده ورسوله  
+أما بعد:
+:::
+
+# Abstract
+
+Arabic romanization schemes often use diacritics which are inconvenient to type on a standard US English keyboard. It is possible to enable International keyboard settings or to type Unicode characters directly but this too is cumbersome. Here we will present a method to type in the romanization using plain ASCII (similar to the Buckwalter scheme) in an Rmarkdown document, and use pandoc Lua filters under the hood to render the romanization with the diacritics.
+
+# Introduction
+
+Rmarkdown is a syntax to type rich text documents in plain ASCII, which can then be converted to HTML pages, or PDF documents.
+
+# Supporting Arabic text in Rmarkdown
+
+If our article is in English and we would like to add inline Arabic text we may enter it within a span element. Example, the Rmarkdown text input:
+
+~~~
+This is some english text with some inline Arabic text [أهلا وسهلا]{lang="ar", dir="rtl"}
+~~~
+
+This is rendered as:
+
+This is some english text with some inline Arabic text [أهلا وسهلا]{lang="ar" dir="rtl"}
+
+We can simplify this by adding a pandoc filter so that instead of typing:
+
+~~~
+[أهلا وسهلا]{lang="ar", dir="rtl"}
+~~~
+
+we can type
+
+~~~
+[أهلا وسهلا]{.ar}
+~~~
+
+to get the same output:
+
+[أهلا وسهلا]{.ar}
+
+To do this create a file `myfilter.lua` and add the following code to it:
+
+~~~
+function Span (elem)
+  if elem.classes[1] == 'ar' then
+    attrs = pandoc.Attr("", {}, {{"lang", "ar"},{"dir","rtl"}})
+    return pandoc.Span(elem.content, attrs)
+  else
+    return elem
+  end
+end
+~~~
+
+Then add the following line to your Rmardown document preamble:
+
+~~~
+    pandoc_args: ["--lua-filter=filter.lua"]
+~~~
+
+# Romanization
+
+There are various romanization schemes described here: https://en.wikipedia.org/wiki/Romanization_of_Arabic
+
+In order to avoid typing all the diacritics directly, which can become cumbersome, we can use pandoc filters again. First we have to define a mapping for Arabic characters to ASCII input characters and to Latin rendered output. This mapping is customizable to what one prefers.
+
+The mapping I use and the pandoc filter code can be seen below:
+
+~~~
+function MyTransliterate(text2)
+  digraph_en = false
+
+  mylcase = {}
+  mylcase["E"] = "ʾ"
+  mylcase["A"] = "ā"
+  mylcase["v"] = "ṯ"
+  mylcase["j"] = "ǧ"
+  mylcase["H"] = "ḥ"
+  mylcase["p"] = "ḏ"
+  mylcase["c"] = "š"
+  mylcase["S"] = "ṣ"
+  mylcase["D"] = "ḍ"
+  mylcase["T"] = "ṭ"
+  mylcase["P"] = "ḏ̣"
+  mylcase["e"] = "ɛ"
+  mylcase["g"] = "ġ"
+  mylcase["o"] = "ḧ"
+  mylcase["O"] = "ẗ"
+  mylcase["I"] = "ī"
+  mylcase["U"] = "ū"
+  mylcase["="] = "·"
+  myucase = {}
+  myucase["E"] = "ʾ"
+  myucase["A"] = "Ā"
+  myucase["v"] = "Ṯ"
+  myucase["j"] = "Ǧ"
+  myucase["H"] = "Ḥ"
+  myucase["x"] = "X"
+  myucase["p"] = "Ḏ"
+  myucase["c"] = "Š"
+  myucase["S"] = "Ṣ"
+  myucase["D"] = "Ḍ"
+  myucase["T"] = "Ṭ"
+  myucase["P"] = "Ḏ̣"
+  myucase["e"] = "Ɛ"
+  myucase["g"] = "Ġ"
+  myucase["I"] = "Ī"
+  myucase["U"] = "Ū"
+  myucase["a"] = "A"
+  myucase["i"] = "I"
+  myucase["u"] = "U"
+  myucase["b"] = "B"
+  myucase["t"] = "T"
+  myucase["d"] = "D"
+  myucase["r"] = "R"
+  myucase["z"] = "Z"
+  myucase["s"] = "S"
+  myucase["f"] = "F"
+  myucase["q"] = "Q"
+  myucase["k"] = "K"
+  myucase["l"] = "L"
+  myucase["m"] = "M"
+  myucase["n"] = "N"
+  myucase["h"] = "H"
+  myucase["w"] = "W"
+  myucase["y"] = "Y"
+
+  if digraph_en then
+    mylcase["v"] = "th"
+    myucase["v"] = "Th"
+    mylcase["c"] = "sh"
+    myucase["c"] = "Sh"
+    mylcase["x"] = "kh"
+    myucase["x"] = "Kh"
+    mylcase["g"] = "gh"
+    myucase["g"] = "Gh"
+  end
+
+  text3 = ''
+  local caps = false
+  local prev_charv = ''
+  for index3 = 1, #text2 do
+    local charv = text2:sub(index3, index3)
+    if charv == "#" then
+      caps = true
+    else
+      if caps then
+        if myucase[charv] == nil then
+          text3 = text3 .. charv
+        else
+          text3 = text3 .. myucase[charv]
+        end
+        caps = false
+      else
+        if digraph_en and charv == 'h' and prev_charv ~= '=' and (prev_charv == 't' or prev_charv == 's' or prev_charv == 'k' or prev_charv == 'd' or prev_charv == 'p' or prev_charv == 'P' or prev_charv == 'c' or prev_charv == 'v' or prev_charv == 'x' or prev_charv == 'g') then
+          text3 = text3 .. "·"
+        end
+        if mylcase[charv] == nil then
+          text3 = text3 .. charv
+        else
+          text3 = text3 .. mylcase[charv]
+        end
+      end
+    end
+    prev_charv = charv
+  end
+  return text3
+end
+function Span (elem)
+  if elem.classes[1] == 'trn' then
+    for index,text in pairs(elem.content) do
+      for index2,text2 in pairs(text) do
+        text3 = MyTransliterate(text2)
+	      text[index2] = text3
+      end
+      elem.content[index] = text
+    end
+    return pandoc.Emph (elem.content)
+  elseif elem.classes[1] == 'trn2' then
+    for index,text in pairs(elem.content) do
+      for index2,text2 in pairs(text) do
+        text3 = MyTransliterate(text2)
+	      text[index2] = text3
+      end
+      elem.content[index] = text
+    end
+    return (elem.content)
+  elseif elem.classes[1] == 'ar' then
+    attrs = pandoc.Attr("", {}, {{"lang", "ar"},{"dir","rtl"}})
+    return pandoc.Span(elem.content, attrs)
+  else
+    return elem
+  end
+end
+~~~
+
+Now we may give the following input
+
+~~~
+[Eachadu EallA EilAha Eilla -llAhu waEachadu Eanna muHammadan eabduhu warasUluh]{.trn}
+~~~
+
+and it will be rendered thus:
+
+[Eachadu EallA EilAha Eilla -llAhu waEachadu Eanna muHammadan eabduhu warasUluh]{.trn}
+
+Note that I have a variable `digraph_en = false`. This can be switched to true with the following variation.
+
+
+|Arabic       |Latin (`digraph_en=false`) |Latin (`digraph_en=true`)|
+|:------------|:------------|:--------------|
+|[ث]{.ar}| ṯ| th|
+|[خ]{.ar}| x| kh|
+|[ش]{.ar}| š| sh|
+|[غ]{.ar}| ġ| gh|
+
+If `digraph_en= true` is chosen, then the romanized text will automatically insert the _middot_ character (·) after a digraph to remove ambiguity.
+
+For example, the Arabic text:
+
+[يَسْهُلُ، يَتْرُكْهُ، مَشْهَد، مَذْهَب، يُبْغِضْهُ، مَظْهَر، يَبْعَثْهُ، يُؤَرِّخْهُ]{.ar}  
+
+is entered for romanization as:
+
+~~~
+[yashulu, yatrukhu, machad, maphab, yubgiDhu, maPhar, yabeavhu, yuEarrixhu]{.trn}
+~~~
+
+and is output as:
+
+`digraph_en = true`: _yas·hulu, yatruk·hu, mash·had, maḏ·hab, yubghiḍ·hu, maḏ̣·har, yabɛath·hu, yuʾarrikh·hu_  
+`digraph_en = false`: [yashulu, yatrukhu, machad, maphab, yubgiDhu, maPhar, yabeavhu, yuEarrixhu]{.trn}
+
+We also have an option to romanize text without putting it into italics (by using `.trn2`) and also to use uppercase characters (by inputing `#`). This can be useful for proper nouns:
+
+Input:
+
+~~~
+The fourth caliph was [#ealI ibn E#abI #Talib]{.trn}
+~~~
+
+Output:
+
+The fourth caliph was [#ealI ibn E#abI #Talib]{.trn2}.
+
+# More details
+
+For more details you may browse the code here: https://github.com/adamiturabi/rmd-arabic-romaniz
+

@@ -1,0 +1,7 @@
+*.pdf
+*.log
+*.tex
+!bidi_art_templ.tex
+*.aux
+*.out
+.Rhistory

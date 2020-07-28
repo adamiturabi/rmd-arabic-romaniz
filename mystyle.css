@@ -1,0 +1,25 @@
+/*
+@import url('https://fonts.googleapis.com/css?family=Amiri&display=swap');
+@import url('fonts/Amiri-Regular.woff2') format('woff2'),
+@import url('fonts/Amiri-Regular.woff') format('woff');
+@import url('https://adamiturabi.github.io/hamza-rules/Amiri-Regular.ttf') format('truetype');
+*/
+
+@font-face {
+    font-family: AmiriWeb;
+    font-style: normal;
+    font-weight: 400;
+    src: url('./fonts/Amiri-Regular.woff2') format('woff2'),
+         url('./fonts/Amiri-Regular.woff') format('woff');
+}
+:lang(ar) {
+  -moz-font-feature-settings:"calt=1, liga=1, clig=1, kern=1";
+  -moz-font-feature-settings:"calt", "liga", "clig", "kern";
+  -ms-font-feature-settings:"calt", "liga", "clig", "kern";
+  -webkit-font-feature-settings:"calt", "liga", "clig", "kern";
+  font-feature-settings:"calt", "liga", "clig", "kern";
+  text-rendering: optimizeLegibility;
+  font-family: AmiriWeb, serif;
+  font-size: 1em;
+  line-height: 200%;
+}
