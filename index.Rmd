@@ -4,7 +4,7 @@ output:
   bookdown::gitbook:
     split_by: "none"
     self_contained: yes
-    pandoc_args: ["--lua-filter=trn.lua"]
+    pandoc_args: ["--lua-filter=myfilter.lua"]
     keep_md: no
     css: mystyle.css
     config:
