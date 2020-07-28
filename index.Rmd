@@ -279,7 +279,7 @@ We also have an option to romanize text without putting it into italics (by usin
 Input:
 
 ~~~
-The fourth caliph was [#ealI ibn E#abI #Talib]{.trn}
+The fourth caliph was [#ealI ibn E#abI #Talib]{.trn2}
 ~~~
 
 Output:
