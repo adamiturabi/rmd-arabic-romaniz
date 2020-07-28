@@ -1,25 +1,29 @@
-function MyTransliterate(text2)
+function RomanizeMapping(text2)
+  -- use digraphs sh, th, etc for some characters
   digraph_en = false
 
+  -- lower case mapping
   mylcase = {}
-  mylcase["E"] = "ʾ"
+  mylcase["E"] = "ʾ" -- hamza
   mylcase["A"] = "ā"
-  mylcase["v"] = "ṯ"
-  mylcase["j"] = "ǧ"
+  mylcase["v"] = "ṯ" -- thaa
+  mylcase["j"] = "ǧ" -- jeem
   mylcase["H"] = "ḥ"
-  mylcase["p"] = "ḏ"
-  mylcase["c"] = "š"
+  mylcase["p"] = "ḏ" -- dhal
+  mylcase["c"] = "š" -- sheen
   mylcase["S"] = "ṣ"
   mylcase["D"] = "ḍ"
   mylcase["T"] = "ṭ"
-  mylcase["P"] = "ḏ̣"
-  mylcase["e"] = "ɛ"
-  mylcase["g"] = "ġ"
-  mylcase["o"] = "ḧ"
-  mylcase["O"] = "ẗ"
+  mylcase["P"] = "ḏ̣" -- DHaa
+  mylcase["e"] = "ɛ" -- 3ayn
+  mylcase["g"] = "ġ" -- ghayn
+  mylcase["o"] = "ḧ" -- for taa marbuta in pausa non-construct
+  mylcase["O"] = "ẗ" -- for taa marbuta in pausa construct
   mylcase["I"] = "ī"
   mylcase["U"] = "ū"
-  mylcase["="] = "·"
+  mylcase["="] = "·" -- to insert middot explicitly. middot is automatically inserted before 'h' if digraph_en=true
+
+  -- upper case mapping. use hash '#' before desired uppercase character
   myucase = {}
   myucase["E"] = "ʾ"
   myucase["A"] = "Ā"
@@ -97,25 +101,21 @@ function MyTransliterate(text2)
   end
   return text3
 end
+function Romanize (elem)
+  for index,text in pairs(elem.content) do
+    for index2,text2 in pairs(text) do
+      text3 = RomanizeMapping(text2)
+      text[index2] = text3
+    end
+    elem.content[index] = text
+  end
+  return (elem.content)
+end
 function Span (elem)
   if elem.classes[1] == 'trn' then
-    for index,text in pairs(elem.content) do
-      for index2,text2 in pairs(text) do
-        text3 = MyTransliterate(text2)
-	      text[index2] = text3
-      end
-      elem.content[index] = text
-    end
-    return pandoc.Emph (elem.content)
+    return pandoc.Emph (Romanize(elem))
   elseif elem.classes[1] == 'trn2' then
-    for index,text in pairs(elem.content) do
-      for index2,text2 in pairs(text) do
-        text3 = MyTransliterate(text2)
-	      text[index2] = text3
-      end
-      elem.content[index] = text
-    end
-    return (elem.content)
+    return (Romanize(elem))
   elseif elem.classes[1] == 'ar' then
     attrs = pandoc.Attr("", {}, {{"lang", "ar"},{"dir","rtl"}})
     return pandoc.Span(elem.content, attrs)
