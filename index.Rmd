@@ -33,7 +33,7 @@ output:
         all: ['facebook', 'twitter', 'linkedin', 'weibo', 'instapaper']
       info: yes
   pdf_document:
-    pandoc_args: ["--lua-filter=trn.lua"]
+    pandoc_args: ["--lua-filter=myfilter.lua"]
     latex_engine: xelatex
     keep_tex: true
     template: bidi_art_templ.tex
@@ -98,7 +98,7 @@ end
 Then add the following line to your Rmardown document preamble:
 
 ~~~
-    pandoc_args: ["--lua-filter=filter.lua"]
+    pandoc_args: ["--lua-filter=myfilter.lua"]
 ~~~
 
 # Romanization
