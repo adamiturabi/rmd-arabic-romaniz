@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Using pandoc lua filters to input and romanize Arabic in Rmarkdown documents</title>
-  <meta name="description" content="Using pandoc lua filters to input and romanize Arabic in Rmarkdown documents" />
+  <title>Using Pandoc Lua filters to input and romanize Arabic in Rmarkdown documents</title>
+  <meta name="description" content="Using Pandoc Lua filters to input and romanize Arabic in Rmarkdown documents" />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Using pandoc lua filters to input and romanize Arabic in Rmarkdown documents" />
+  <meta property="og:title" content="Using Pandoc Lua filters to input and romanize Arabic in Rmarkdown documents" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Using pandoc lua filters to input and romanize Arabic in Rmarkdown documents" />
+  <meta name="twitter:title" content="Using Pandoc Lua filters to input and romanize Arabic in Rmarkdown documents" />
   
   
   
@@ -1833,7 +1833,7 @@ line-height: 200%;
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Using pandoc lua filters to input and romanize Arabic in Rmarkdown documents</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Using Pandoc Lua filters to input and romanize Arabic in Rmarkdown documents</a>
           </h1>
         </div>
 
@@ -1842,7 +1842,7 @@ line-height: 200%;
 
             <section class="normal" id="section-">
 <div id="header">
-<h1 class="title">Using pandoc lua filters to input and romanize Arabic in Rmarkdown documents</h1>
+<h1 class="title">Using Pandoc Lua filters to input and romanize Arabic in Rmarkdown documents</h1>
 </div>
 <div lang="ar" dir="rtl">
 <p>بسم الله الرحمن الرحيم<br />
@@ -1852,7 +1852,7 @@ line-height: 200%;
 </div>
 <div id="abstract" class="section level1" number="1">
 <h1><span class="header-section-number">1</span> Abstract</h1>
-<p>Arabic romanization schemes often use diacritics which are inconvenient to type on a standard US English keyboard. It is possible to enable International keyboard settings or to type Unicode characters directly but this too is cumbersome. Here we will present a method to type in the romanization using plain ASCII (similar to the Buckwalter scheme) in an Rmarkdown document, and use pandoc Lua filters under the hood to render the romanization with the diacritics.</p>
+<p>Arabic romanization schemes often use diacritics which are inconvenient to type on a standard US English keyboard. It is possible to enable International keyboard settings or to type Unicode characters directly but this too is cumbersome. Here we will present a method to type in the romanization using plain ASCII (similar to the Buckwalter scheme) in an Rmarkdown document, and use Pandoc Lua filters under the hood to render the romanization with the diacritics.</p>
 </div>
 <div id="introduction" class="section level1" number="2">
 <h1><span class="header-section-number">2</span> Introduction</h1>
@@ -1864,7 +1864,7 @@ line-height: 200%;
 <pre><code>This is some english text with some inline Arabic text [أهلا وسهلا]{lang=&quot;ar&quot;, dir=&quot;rtl&quot;}</code></pre>
 <p>This is rendered as:</p>
 <p>This is some english text with some inline Arabic text <span lang="ar" dir="rtl">أهلا وسهلا</span></p>
-<p>We can simplify this by adding a pandoc filter so that instead of typing:</p>
+<p>We can simplify this by adding a Pandoc Lua filter so that instead of typing:</p>
 <pre><code>[أهلا وسهلا]{lang=&quot;ar&quot;, dir=&quot;rtl&quot;}</code></pre>
 <p>we can type</p>
 <pre><code>[أهلا وسهلا]{.ar}</code></pre>
@@ -1879,14 +1879,14 @@ line-height: 200%;
     return elem
   end
 end</code></pre>
-<p>Then add the following line to your Rmardown document preamble:</p>
+<p>Then add the following line to your Rmarkdown document preamble:</p>
 <pre><code>    pandoc_args: [&quot;--lua-filter=myfilter.lua&quot;]</code></pre>
 </div>
 <div id="romanization" class="section level1" number="4">
 <h1><span class="header-section-number">4</span> Romanization</h1>
 <p>There are various romanization schemes described here: <a href="https://en.wikipedia.org/wiki/Romanization_of_Arabic" class="uri">https://en.wikipedia.org/wiki/Romanization_of_Arabic</a></p>
-<p>In order to avoid typing all the diacritics directly, which can become cumbersome, we can use pandoc filters again. First we have to define a mapping for Arabic characters to ASCII input characters and to Latin rendered output. This mapping is customizable to what one prefers.</p>
-<p>The mapping I use and the pandoc filter code can be seen below:</p>
+<p>In order to avoid typing all the diacritics directly, which can become cumbersome, we can use Pandoc Lua filters again. First we have to define a mapping for Arabic characters to ASCII input characters and to Latin rendered output. This mapping is customizable to what one prefers.</p>
+<p>The mapping I use and the Pandoc Lua filter code can be seen below:</p>
 <pre><code>function RomanizeMapping(text2)
   -- use digraphs sh, th, etc for some characters
   digraph_en = false
@@ -2013,9 +2013,9 @@ function Span (elem)
   end
 end</code></pre>
 <p>Now we may give the following input</p>
-<pre><code>[Eachadu EallA EilAha Eilla -llAhu waEachadu Eanna muHammadan eabduhu warasUluh]{.trn}</code></pre>
+<pre><code>[Ealeilmu fi -SSigari kannaqci fi -lHajar]{.trn}</code></pre>
 <p>and it will be rendered thus:</p>
-<p><em>ʾašhadu ʾallā ʾilāha ʾilla -llāhu waʾašhadu ʾanna muḥammadan ɛabduhu warasūluh</em></p>
+<p><em>ʾalɛilmu fi -ṣṣiġari kannaqši fi -lḥaǧar</em></p>
 <p>Note that I have a variable <code>digraph_en = false</code>. This can be switched to true with the following variation.</p>
 <table>
 <thead>
@@ -2048,19 +2048,19 @@ end</code></pre>
 </tr>
 </tbody>
 </table>
-<p>If <code>digraph_en= true</code> is chosen, then the romanized text will automatically insert the <em>middot</em> character (·) after a digraph to remove ambiguity.</p>
+<p>If <code>digraph_en= true</code> is chosen, then the romanized text will automatically insert the <em>middot</em> character (·) when needed before <em>h</em> to remove ambiguity.</p>
 <p>For example, the Arabic text:</p>
-<p><span lang="ar" dir="rtl">يَسْهُلُ، يَتْرُكْهُ، مَشْهَد، مَذْهَب، يُبْغِضْهُ، مَظْهَر، يَبْعَثْهُ، يُؤَرِّخْهُ</span></p>
+<p><span lang="ar" dir="rtl">يَسْهُلُ، يَتْرُكْهُ، مَشْهَد، مَذْهَب، يُبْغِضْهُ، مَظْهَر، يَبْعَثْهُ، يُؤَرِّخْهُ، يُبْعِدْهُ</span></p>
 <p>is entered for romanization as:</p>
-<pre><code>[yashulu, yatrukhu, machad, maphab, yubgiDhu, maPhar, yabeavhu, yuEarrixhu]{.trn}</code></pre>
+<pre><code>[yashulu, yatrukhu, machad, maphab, yubgiDhu, maPhar, yabeavhu, yuEarrixhu, yubeidhu]{.trn}</code></pre>
 <p>and is output as:</p>
-<p><code>digraph_en = true</code>: <em>yas·hulu, yatruk·hu, mash·had, maḏ·hab, yubghiḍ·hu, maḏ̣·har, yabɛath·hu, yuʾarrikh·hu</em><br />
-<code>digraph_en = false</code>: <em>yashulu, yatrukhu, mašhad, maḏhab, yubġiḍhu, maḏ̣har, yabɛaṯhu, yuʾarrixhu</em></p>
+<p><code>digraph_en = true</code>: <em>yas·hulu, yatruk·hu, mash·had, maḏ·hab, yubghiḍ·hu, maḏ̣·har, yabɛath·hu, yuʾarrikh·hu, yubɛid·hu</em><br />
+<code>digraph_en = false</code>: <em>yashulu, yatrukhu, mašhad, maḏhab, yubġiḍhu, maḏ̣har, yabɛaṯhu, yuʾarrixhu, yubɛidhu</em></p>
 <p>We also have an option to romanize text without putting it into italics (by using <code>.trn2</code>) and also to use uppercase characters (by inputing <code>#</code>). This can be useful for proper nouns:</p>
 <p>Input:</p>
-<pre><code>The fourth caliph was [#ealI ibn E#abI #Talib]{.trn2}</code></pre>
+<pre><code>[#zayd ibn #eamr]{.trn2}</code></pre>
 <p>Output:</p>
-<p>The fourth caliph was Ɛalī ibn ʾAbī Ṭalib.</p>
+<p>Zayd ibn Ɛamr</p>
 </div>
 <div id="more-details" class="section level1" number="5">
 <h1><span class="header-section-number">5</span> More details</h1>
