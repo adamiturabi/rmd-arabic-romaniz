@@ -1898,6 +1898,7 @@ end</code></pre>
   mylcase[&quot;v&quot;] = &quot;ṯ&quot; -- thaa
   mylcase[&quot;j&quot;] = &quot;ǧ&quot; -- jeem
   mylcase[&quot;H&quot;] = &quot;ḥ&quot;
+  mylcase[&quot;x&quot;] = &quot;ḵ&quot; -- Khaa
   mylcase[&quot;p&quot;] = &quot;ḏ&quot; -- dhal
   mylcase[&quot;c&quot;] = &quot;š&quot; -- sheen
   mylcase[&quot;S&quot;] = &quot;ṣ&quot;
@@ -1919,7 +1920,7 @@ end</code></pre>
   myucase[&quot;v&quot;] = &quot;Ṯ&quot;
   myucase[&quot;j&quot;] = &quot;Ǧ&quot;
   myucase[&quot;H&quot;] = &quot;Ḥ&quot;
-  myucase[&quot;x&quot;] = &quot;X&quot;
+  myucase[&quot;x&quot;] = &quot;Ḵ&quot;
   myucase[&quot;p&quot;] = &quot;Ḏ&quot;
   myucase[&quot;c&quot;] = &quot;Š&quot;
   myucase[&quot;S&quot;] = &quot;Ṣ&quot;
@@ -1950,14 +1951,18 @@ end</code></pre>
   myucase[&quot;y&quot;] = &quot;Y&quot;
 
   if digraph_en then
-    mylcase[&quot;v&quot;] = &quot;th&quot;
-    myucase[&quot;v&quot;] = &quot;Th&quot;
-    mylcase[&quot;c&quot;] = &quot;sh&quot;
-    myucase[&quot;c&quot;] = &quot;Sh&quot;
-    mylcase[&quot;x&quot;] = &quot;kh&quot;
-    myucase[&quot;x&quot;] = &quot;Kh&quot;
-    mylcase[&quot;g&quot;] = &quot;gh&quot;
-    myucase[&quot;g&quot;] = &quot;Gh&quot;
+    mylcase[&quot;v&quot;] = &quot;ṯ͡h&quot;
+    myucase[&quot;v&quot;] = &quot;Ṯ͡h&quot;
+    mylcase[&quot;c&quot;] = &quot;š͡h&quot; -- sheen
+    myucase[&quot;c&quot;] = &quot;Š͡h&quot;
+    mylcase[&quot;x&quot;] = &quot;ḵ͡h&quot;
+    myucase[&quot;x&quot;] = &quot;Ḵ͡h&quot;
+    mylcase[&quot;g&quot;] = &quot;ġ͡h&quot; -- ghayn
+    myucase[&quot;g&quot;] = &quot;Ġ͡h&quot;
+    mylcase[&quot;p&quot;] = &quot;ḏ͡h&quot; -- dhal
+    myucase[&quot;p&quot;] = &quot;Ḏ͡h&quot;
+    mylcase[&quot;P&quot;] = &quot;ḏ̣͡h&quot;
+    myucase[&quot;P&quot;] = &quot;Ḏ̣͡h&quot;
   end
 
   text3 = &#39;&#39;
@@ -2015,7 +2020,7 @@ end</code></pre>
 <p>Now we may give the following input</p>
 <pre><code>[Ealeilmu fi -SSigari kannaqci fi -lHajar]{.trn}</code></pre>
 <p>and it will be rendered thus:</p>
-<p><em>ʾalɛilmu fi -ṣṣiġari kannaqši fi -lḥaǧar</em></p>
+<p><em>ʾalɛilmu fi -ṣṣiġari kannaqši fi -lḥajar</em></p>
 <p>Note that I have a variable <code>digraph_en = false</code>. This can be switched to true with the following variation.</p>
 <table>
 <thead>
@@ -2028,23 +2033,33 @@ end</code></pre>
 <tbody>
 <tr class="odd">
 <td align="left"><span lang="ar" dir="rtl">ث</span></td>
-<td align="left">ṯ</td>
-<td align="left">th</td>
+<td align="left"><em>ṯ</em></td>
+<td align="left">ṯ͡h</td>
 </tr>
 <tr class="even">
 <td align="left"><span lang="ar" dir="rtl">خ</span></td>
-<td align="left">x</td>
-<td align="left">kh</td>
+<td align="left"><em>ḵ</em></td>
+<td align="left">ḵ͡h</td>
 </tr>
 <tr class="odd">
+<td align="left"><span lang="ar" dir="rtl">ذ</span></td>
+<td align="left"><em>ḏ</em></td>
+<td align="left">ḏ͡h</td>
+</tr>
+<tr class="even">
 <td align="left"><span lang="ar" dir="rtl">ش</span></td>
-<td align="left">š</td>
-<td align="left">sh</td>
+<td align="left"><em>š</em></td>
+<td align="left">š͡h</td>
+</tr>
+<tr class="odd">
+<td align="left"><span lang="ar" dir="rtl">ظ</span></td>
+<td align="left"><em>ḏ̣</em></td>
+<td align="left">ḏ̣͡h</td>
 </tr>
 <tr class="even">
 <td align="left"><span lang="ar" dir="rtl">غ</span></td>
-<td align="left">ġ</td>
-<td align="left">gh</td>
+<td align="left"><em>ġ</em></td>
+<td align="left">ġ͡h</td>
 </tr>
 </tbody>
 </table>
@@ -2054,8 +2069,8 @@ end</code></pre>
 <p>is entered for romanization as:</p>
 <pre><code>[yashulu, yatrukhu, machad, maphab, yubgiDhu, maPhar, yabeavhu, yuEarrixhu, yubeidhu]{.trn}</code></pre>
 <p>and is output as:</p>
-<p><code>digraph_en = true</code>: <em>yas·hulu, yatruk·hu, mash·had, maḏ·hab, yubghiḍ·hu, maḏ̣·har, yabɛath·hu, yuʾarrikh·hu, yubɛid·hu</em><br />
-<code>digraph_en = false</code>: <em>yashulu, yatrukhu, mašhad, maḏhab, yubġiḍhu, maḏ̣har, yabɛaṯhu, yuʾarrixhu, yubɛidhu</em></p>
+<p><code>digraph_en = true</code>: <em>yas·hulu, yatruk·hu, maš͡h·had, maḏ͡h·hab, yubġ͡hiḍ·hu, maḏ̣͡h·har, yabɛaṯ͡h·hu, yuʾarriḵ͡h·hu, yubɛid·hu</em></p>
+<p><code>digraph_en = false</code>: <em>yashulu, yatrukhu, mašhad, maḏhab, yubġiḍhu, maḏ̣har, yabɛaṯhu, yuʾarriḵhu, yubɛidhu</em></p>
 <p>We also have an option to romanize text without putting it into italics (by using <code>.trn2</code>) and also to use uppercase characters (by inputing <code>#</code>). This can be useful for proper nouns:</p>
 <p>Input:</p>
 <pre><code>[#zayd ibn E#abI #eamr]{.trn2}</code></pre>

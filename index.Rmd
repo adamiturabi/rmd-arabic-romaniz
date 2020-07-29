@@ -121,6 +121,7 @@ function RomanizeMapping(text2)
   mylcase["v"] = "ṯ" -- thaa
   mylcase["j"] = "ǧ" -- jeem
   mylcase["H"] = "ḥ"
+  mylcase["x"] = "ḵ" -- Khaa
   mylcase["p"] = "ḏ" -- dhal
   mylcase["c"] = "š" -- sheen
   mylcase["S"] = "ṣ"
@@ -142,7 +143,7 @@ function RomanizeMapping(text2)
   myucase["v"] = "Ṯ"
   myucase["j"] = "Ǧ"
   myucase["H"] = "Ḥ"
-  myucase["x"] = "X"
+  myucase["x"] = "Ḵ"
   myucase["p"] = "Ḏ"
   myucase["c"] = "Š"
   myucase["S"] = "Ṣ"
@@ -173,14 +174,18 @@ function RomanizeMapping(text2)
   myucase["y"] = "Y"
 
   if digraph_en then
-    mylcase["v"] = "th"
-    myucase["v"] = "Th"
-    mylcase["c"] = "sh"
-    myucase["c"] = "Sh"
-    mylcase["x"] = "kh"
-    myucase["x"] = "Kh"
-    mylcase["g"] = "gh"
-    myucase["g"] = "Gh"
+    mylcase["v"] = "ṯ͡h"
+    myucase["v"] = "Ṯ͡h"
+    mylcase["c"] = "š͡h" -- sheen
+    myucase["c"] = "Š͡h"
+    mylcase["x"] = "ḵ͡h"
+    myucase["x"] = "Ḵ͡h"
+    mylcase["g"] = "ġ͡h" -- ghayn
+    myucase["g"] = "Ġ͡h"
+    mylcase["p"] = "ḏ͡h" -- dhal
+    myucase["p"] = "Ḏ͡h"
+    mylcase["P"] = "ḏ̣͡h"
+    myucase["P"] = "Ḏ̣͡h"
   end
 
   text3 = ''
@@ -252,10 +257,12 @@ Note that I have a variable `digraph_en = false`. This can be switched to true w
 
 |Arabic       |Latin (`digraph_en=false`) |Latin (`digraph_en=true`)|
 |:------------|:------------|:--------------|
-|[ث]{.ar}| ṯ| th|
-|[خ]{.ar}| x| kh|
-|[ش]{.ar}| š| sh|
-|[غ]{.ar}| ġ| gh|
+|[ث]{.ar} |[v]{.trn}|ṯ͡h |
+|[خ]{.ar} |[x]{.trn}|ḵ͡h |
+|[ذ]{.ar} |[p]{.trn}|ḏ͡h |
+|[ش]{.ar} |[c]{.trn}|š͡h |
+|[ظ]{.ar} |[P]{.trn}|ḏ̣͡h |
+|[غ]{.ar} |[g]{.trn}|ġ͡h |
 
 If `digraph_en= true` is chosen, then the romanized text will automatically insert the _middot_ character (·) when needed before [h]{.trn} to remove ambiguity.
 
@@ -271,7 +278,8 @@ is entered for romanization as:
 
 and is output as:
 
-`digraph_en = true`: _yas·hulu, yatruk·hu, mash·had, maḏ·hab, yubghiḍ·hu, maḏ̣·har, yabɛath·hu, yuʾarrikh·hu, yubɛid·hu_  
+`digraph_en = true`: _yas·hulu, yatruk·hu, maš͡h·had, maḏ͡h·hab, yubġ͡hiḍ·hu, maḏ̣͡h·har, yabɛaṯ͡h·hu, yuʾarriḵ͡h·hu, yubɛid·hu_
+
 `digraph_en = false`: [yashulu, yatrukhu, machad, maphab, yubgiDhu, maPhar, yabeavhu, yuEarrixhu, yubeidhu]{.trn}
 
 We also have an option to romanize text without putting it into italics (by using `.trn2`) and also to use uppercase characters (by inputing `#`). This can be useful for proper nouns:

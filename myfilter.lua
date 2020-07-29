@@ -7,8 +7,9 @@ function RomanizeMapping(text2)
   mylcase["E"] = "ʾ" -- hamza
   mylcase["A"] = "ā"
   mylcase["v"] = "ṯ" -- thaa
-  mylcase["j"] = "ǧ" -- jeem
+  mylcase["j"] = "j" -- "ǧ" -- jeem
   mylcase["H"] = "ḥ"
+  mylcase["x"] = "ḵ" -- Khaa
   mylcase["p"] = "ḏ" -- dhal
   mylcase["c"] = "š" -- sheen
   mylcase["S"] = "ṣ"
@@ -28,9 +29,9 @@ function RomanizeMapping(text2)
   myucase["E"] = "ʾ"
   myucase["A"] = "Ā"
   myucase["v"] = "Ṯ"
-  myucase["j"] = "Ǧ"
+  myucase["j"] = "J" -- "Ǧ"
   myucase["H"] = "Ḥ"
-  myucase["x"] = "X"
+  myucase["x"] = "Ḵ"
   myucase["p"] = "Ḏ"
   myucase["c"] = "Š"
   myucase["S"] = "Ṣ"
