@@ -279,12 +279,12 @@ We also have an option to romanize text without putting it into italics (by usin
 Input:
 
 ~~~
-[#zayd ibn #eamr]{.trn2}
+[#zayd ibn E#abI #eamr]{.trn2}
 ~~~
 
 Output:
 
-[#zayd ibn #eamr]{.trn2}
+[#zayd ibn E#abI #eamr]{.trn2}
 
 # More details
 
