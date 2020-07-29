@@ -61,14 +61,18 @@ function RomanizeMapping(text2)
   myucase["y"] = "Y"
 
   if digraph_en then
-    mylcase["v"] = "th"
-    myucase["v"] = "Th"
-    mylcase["c"] = "sh"
-    myucase["c"] = "Sh"
-    mylcase["x"] = "kh"
-    myucase["x"] = "Kh"
-    mylcase["g"] = "gh"
-    myucase["g"] = "Gh"
+    mylcase["v"] = "ṯ͡h"
+    myucase["v"] = "Ṯ͡h"
+    mylcase["c"] = "š͡h" -- sheen
+    myucase["c"] = "Š͡h"
+    mylcase["x"] = "ḵ͡h"
+    myucase["x"] = "Ḵ͡h"
+    mylcase["g"] = "ġ͡h" -- ghayn
+    myucase["g"] = "Ġ͡h"
+    mylcase["p"] = "ḏ͡h" -- dhal
+    myucase["p"] = "Ḏ͡h"
+    mylcase["P"] = "ḏ̣͡h"
+    myucase["P"] = "Ḏ̣͡h"
   end
 
   text3 = ''
