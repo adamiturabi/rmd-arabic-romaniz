@@ -72,8 +72,10 @@ function RomanizeMapping(text2)
     myucase["g"] = "G͟h"
     mylcase["p"] = "d͟h"
     myucase["p"] = "D͟h"
-    mylcase["P"] = "d͟͏̣h"
-    myucase["P"] = "D͟͏̣h"
+    mylcase["P"] = "d".. utf8.char(0x035f) .. utf8.char(0x034f) .. utf8.char(0x0323) .. "h"
+    myucase["P"] = "D".. utf8.char(0x035f) .. utf8.char(0x034f) .. utf8.char(0x0323) .. "h"
+    --mylcase["P"] = "d͟͏̣h"
+    --myucase["P"] = "D͟͏̣h"
 
     --mylcase["v"] = "ṯ͡h"
     --myucase["v"] = "Ṯ͡h"
