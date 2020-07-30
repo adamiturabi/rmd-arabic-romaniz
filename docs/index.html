@@ -1896,7 +1896,7 @@ end</code></pre>
   mylcase[&quot;E&quot;] = &quot;ʾ&quot; -- hamza
   mylcase[&quot;A&quot;] = &quot;ā&quot;
   mylcase[&quot;v&quot;] = &quot;ṯ&quot; -- thaa
-  mylcase[&quot;j&quot;] = &quot;ǧ&quot; -- jeem
+  mylcase[&quot;j&quot;] = &quot;j&quot; -- jeem
   mylcase[&quot;H&quot;] = &quot;ḥ&quot;
   mylcase[&quot;x&quot;] = &quot;ḵ&quot; -- Khaa
   mylcase[&quot;p&quot;] = &quot;ḏ&quot; -- dhal
@@ -1918,7 +1918,7 @@ end</code></pre>
   myucase[&quot;E&quot;] = &quot;ʾ&quot;
   myucase[&quot;A&quot;] = &quot;Ā&quot;
   myucase[&quot;v&quot;] = &quot;Ṯ&quot;
-  myucase[&quot;j&quot;] = &quot;Ǧ&quot;
+  myucase[&quot;j&quot;] = &quot;J&quot;
   myucase[&quot;H&quot;] = &quot;Ḥ&quot;
   myucase[&quot;x&quot;] = &quot;Ḵ&quot;
   myucase[&quot;p&quot;] = &quot;Ḏ&quot;
@@ -2065,12 +2065,12 @@ end</code></pre>
 </table>
 <p>If <code>digraph_en= true</code> is chosen, then the romanized text will automatically insert the <em>middot</em> character (·) when needed before <em>h</em> to remove ambiguity.</p>
 <p>For example, the Arabic text:</p>
-<p><span lang="ar" dir="rtl">يَسْهُلُ، يَتْرُكْهُ، مَشْهَد، مَذْهَب، يُبْغِضْهُ، مَظْهَر، يَبْعَثْهُ، يُؤَرِّخْهُ، يُبْعِدْهُ</span></p>
+<p><span lang="ar" dir="rtl">يَسْهُلُ، يَتْرُكْهُ، مَشْهَد، مَذْهَب، يُبْغِضْهُ، مَظْهَر، يَبْعَثْهُ، يُؤَرِّخْهُ، يُبْعِدْهُ, يُبْلِغْهُ</span></p>
 <p>is entered for romanization as:</p>
 <pre><code>[yashulu, yatrukhu, machad, maphab, yubgiDhu, maPhar, yabeavhu, yuEarrixhu, yubeidhu]{.trn}</code></pre>
 <p>and is output as:</p>
-<p><code>digraph_en = true</code>: <em>yas·hulu, yatruk·hu, mas͟h·had, mad͟h·hab, yubg͟hiḍ·hu, mad͟͏̣h·har, yabɛat͟h·hu, yuʾarrik͟h·hu, yubɛid·hu</em></p>
-<p><code>digraph_en = false</code>: <em>yashulu, yatrukhu, mašhad, maḏhab, yubġiḍhu, maḏ̣har, yabɛaṯhu, yuʾarriḵhu, yubɛidhu</em></p>
+<p><code>digraph_en = true</code>: <em>yas·hulu, yatruk·hu, mas͟h·had, mad͟h·hab, yubg͟hiḍ·hu, mad͟͏̣h·har, yabɛat͟h·hu, yuʾarrik͟h·hu, yubɛid·hu, yublig͟h·hu</em></p>
+<p><code>digraph_en = false</code>: <em>yashulu, yatrukhu, mašhad, maḏhab, yubġiḍhu, maḏ̣har, yabɛaṯhu, yuʾarriḵhu, yubɛidhu, yubliġhu</em></p>
 <p>We also have an option to romanize text without putting it into italics (by using <code>.trn2</code>) and also to use uppercase characters (by inputing <code>#</code>). This can be useful for proper nouns:</p>
 <p>Input:</p>
 <pre><code>[#zayd ibn E#abI #eamr]{.trn2}</code></pre>

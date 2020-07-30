@@ -119,7 +119,7 @@ function RomanizeMapping(text2)
   mylcase["E"] = "ʾ" -- hamza
   mylcase["A"] = "ā"
   mylcase["v"] = "ṯ" -- thaa
-  mylcase["j"] = "ǧ" -- jeem
+  mylcase["j"] = "j" -- jeem
   mylcase["H"] = "ḥ"
   mylcase["x"] = "ḵ" -- Khaa
   mylcase["p"] = "ḏ" -- dhal
@@ -141,7 +141,7 @@ function RomanizeMapping(text2)
   myucase["E"] = "ʾ"
   myucase["A"] = "Ā"
   myucase["v"] = "Ṯ"
-  myucase["j"] = "Ǧ"
+  myucase["j"] = "J"
   myucase["H"] = "Ḥ"
   myucase["x"] = "Ḵ"
   myucase["p"] = "Ḏ"
@@ -268,7 +268,7 @@ If `digraph_en= true` is chosen, then the romanized text will automatically inse
 
 For example, the Arabic text:
 
-[يَسْهُلُ، يَتْرُكْهُ، مَشْهَد، مَذْهَب، يُبْغِضْهُ، مَظْهَر، يَبْعَثْهُ، يُؤَرِّخْهُ، يُبْعِدْهُ]{.ar}  
+[يَسْهُلُ، يَتْرُكْهُ، مَشْهَد، مَذْهَب، يُبْغِضْهُ، مَظْهَر، يَبْعَثْهُ، يُؤَرِّخْهُ، يُبْعِدْهُ, يُبْلِغْهُ]{.ar}  
 
 is entered for romanization as:
 
@@ -278,9 +278,9 @@ is entered for romanization as:
 
 and is output as:
 
-`digraph_en = true`: _yas·hulu, yatruk·hu, mas͟h·had, mad͟h·hab, yubg͟hiḍ·hu, mad͟͏̣h·har, yabɛat͟h·hu, yuʾarrik͟h·hu, yubɛid·hu_
+`digraph_en = true`: _yas·hulu, yatruk·hu, mas͟h·had, mad͟h·hab, yubg͟hiḍ·hu, mad͟͏̣h·har, yabɛat͟h·hu, yuʾarrik͟h·hu, yubɛid·hu, yublig͟h·hu_
 
-`digraph_en = false`: [yashulu, yatrukhu, machad, maphab, yubgiDhu, maPhar, yabeavhu, yuEarrixhu, yubeidhu]{.trn}
+`digraph_en = false`: [yashulu, yatrukhu, machad, maphab, yubgiDhu, maPhar, yabeavhu, yuEarrixhu, yubeidhu, yublighu]{.trn}
 
 We also have an option to romanize text without putting it into italics (by using `.trn2`) and also to use uppercase characters (by inputing `#`). This can be useful for proper nouns:
 
