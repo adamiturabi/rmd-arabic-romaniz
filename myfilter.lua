@@ -62,18 +62,31 @@ function RomanizeMapping(text2)
   myucase["y"] = "Y"
 
   if digraph_en then
-    mylcase["v"] = "ṯ͡h"
-    myucase["v"] = "Ṯ͡h"
-    mylcase["c"] = "š͡h" -- sheen
-    myucase["c"] = "Š͡h"
-    mylcase["x"] = "ḵ͡h"
-    myucase["x"] = "Ḵ͡h"
-    mylcase["g"] = "ġ͡h" -- ghayn
-    myucase["g"] = "Ġ͡h"
-    mylcase["p"] = "ḏ͡h" -- dhal
-    myucase["p"] = "Ḏ͡h"
-    mylcase["P"] = "ḏ̣͡h"
-    myucase["P"] = "Ḏ̣͡h"
+    mylcase["v"] = "t͟h"
+    myucase["v"] = "T͟h"
+    mylcase["c"] = "s͟h"
+    myucase["c"] = "S͟h"
+    mylcase["x"] = "k͟h"
+    myucase["x"] = "K͟h"
+    mylcase["g"] = "g͟h"
+    myucase["g"] = "G͟h"
+    mylcase["p"] = "d͟h"
+    myucase["p"] = "D͟h"
+    mylcase["P"] = "d͟͏̣h"
+    myucase["P"] = "D͟͏̣h"
+
+    --mylcase["v"] = "ṯ͡h"
+    --myucase["v"] = "Ṯ͡h"
+    --mylcase["c"] = "š͡h" -- sheen
+    --myucase["c"] = "Š͡h"
+    --mylcase["x"] = "ḵ͡h"
+    --myucase["x"] = "Ḵ͡h"
+    --mylcase["g"] = "ġ͡h" -- ghayn
+    --myucase["g"] = "Ġ͡h"
+    --mylcase["p"] = "ḏ͡h" -- dhal
+    --myucase["p"] = "Ḏ͡h"
+    --mylcase["P"] = "ḏ̣͡h"
+    --myucase["P"] = "Ḏ̣͡h"
   end
 
   text3 = ''
